@@ -1,8 +1,18 @@
-import './style.css'
+import Phaser, { AUTO } from "phaser";
+import Level1 from "./scenes/Level1";
+var config: Phaser.Types.Core.GameConfig = {
+	type: AUTO,
+	width: window.innerWidth,
+	height: window.innerHeight,
+	physics: {
+		default: "arcade",
+		arcade: {
+			gravity: { y: 100 },
+			debug: true,
+		},
+	},
+	pixelArt: true,
+	scene: [Level1],
+};
 
-const app = document.querySelector<HTMLDivElement>('#app')!
-
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+new Phaser.Game(config);
