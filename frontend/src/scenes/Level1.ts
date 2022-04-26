@@ -1,12 +1,15 @@
+import Player from "../classes/Player";
+
 export default class Level1 extends Phaser.Scene {
+	private player!: Player;
 	constructor() {
 		super("Level1");
 	}
 
 	create(): void {
-		this.physics.add
-			.sprite(0, 0, "player")
-			.setCollideWorldBounds(true, 1, 1)
-			.setVelocityX(100);
+		this.player = new Player(this,50,50);
+	}
+	update(): void {
+		this.player.update();
 	}
 }
