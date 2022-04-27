@@ -13,7 +13,6 @@ var config: Phaser.Types.Core.GameConfig = {
 	},
 	pixelArt: true,
 	scene: [Level1],
-	input: true,
 };
 
 new Phaser.Game(config);
