@@ -1,5 +1,6 @@
 import Phaser, { AUTO } from "phaser";
 import Level1 from "./scenes/Level1";
+import LoadingScene from "./scenes/LoadingScene";
 var config: Phaser.Types.Core.GameConfig = {
 	type: AUTO,
 	width: window.innerWidth,
@@ -7,12 +8,12 @@ var config: Phaser.Types.Core.GameConfig = {
 	physics: {
 		default: "arcade",
 		arcade: {
-			gravity: { y: 100 },
+			gravity: { y: 500},
 			debug: true,
 		},
 	},
 	pixelArt: true,
-	scene: [Level1],
+	scene: [LoadingScene,Level1],
 };
 
 new Phaser.Game(config);
