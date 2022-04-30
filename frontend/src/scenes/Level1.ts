@@ -3,7 +3,6 @@ import Player from "../classes/Player";
 export default class Level1 extends Phaser.Scene {
 	private map!: Phaser.Tilemaps.Tilemap;
 	private tileset!: Phaser.Tilemaps.Tileset;
-	private platforms!: Phaser.Physics.Arcade.StaticGroup;
 	private groundLayer!: Phaser.Tilemaps.TilemapLayer;
 	private player!: Player;
 	constructor() {
@@ -12,6 +11,8 @@ export default class Level1 extends Phaser.Scene {
 
 	create(): void {
 		this.player = new Player(this, 50, 50);
+		this.cameras.main.setZoom(1.2, 1.2);
+		this.cameras.main.startFollow(this.player, false, 5, 5);
 		this.intiTileMap();
 		this.initCollision();
 	}

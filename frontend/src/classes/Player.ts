@@ -11,20 +11,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		scene.add.existing(this);
 		scene.physics.add.existing(this);
 		this.setCollideWorldBounds(true);
-
+		this.setScale(1.6, 1.6);
 		this.initControls();
 
 		this.initAnimations();
 	}
 
 	update(): void {
-		this.play("player-idle", true);
 		if (this.keyD.isDown) {
 			this.setVelocityX(this.speed);
+			this.flipX = false;
+			this.play("player-run", true);
 		} else if (this.keyA.isDown) {
 			this.setVelocityX(-this.speed);
+			this.flipX = true;
+			this.play("player-run", true);
 		} else {
 			this.setVelocityX(0);
+			this.play("player-idle", true);
 		}
 	}
 
@@ -51,9 +55,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			frames: this.anims.generateFrameNumbers("player-idle", {
 				frames: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 			}),
-			frameRate: 10,
+			frameRate: 20,
 			repeat: -1,
 			duration: 100,
+		});
+
+		this.anims.create({
+			key:'player-run',
+			frames: this.anims.generateFrameNumbers('player-run', { frames:[0, 1, 2, 4, 5, 6, 7,8,9]}),
+			frameRate: 20,
+			repeat: -1,
+			duration:100,
 		});
 	}
 

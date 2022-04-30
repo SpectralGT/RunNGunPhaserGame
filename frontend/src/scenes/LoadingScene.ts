@@ -8,6 +8,7 @@ export default class LoadingScene extends Phaser.Scene{
         this.load.tilemapTiledJSON('map', 'src/public/tilemap.json');
 
         this.load.spritesheet('player-idle', 'src/public/Main Characters/Virtual Guy/Idle (32x32).png',{frameWidth:32,frameHeight:32});
+        this.load.spritesheet('player-run','src/public/Main Characters/Virtual Guy/Run (32x32).png',{frameWidth:32,frameHeight:32});
     }
     
     create(): void{
