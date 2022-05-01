@@ -4,7 +4,9 @@
   "description": "This is a simple multiplayer game made using Phaser and Socket.io",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:client":"cd frontend && npm run dev",
+    "dev:server":"cd backend && nodemon server.js"
   },
   "repository": {
     "type": "git",
