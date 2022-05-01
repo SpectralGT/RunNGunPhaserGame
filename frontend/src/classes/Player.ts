@@ -4,7 +4,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	private keySpace!: Phaser.Input.Keyboard.Key;
 
 	private speed: number = 200;
-	private jumpforce: number = 200;
+	private jumpforce: number = 300;
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, "player");
 
@@ -32,8 +32,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		}
 	}
 
-	initControls():void{
-		
+	initControls(): void {
 		this.keyA = this.scene.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.A
 		);
@@ -61,11 +60,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		});
 
 		this.anims.create({
-			key:'player-run',
-			frames: this.anims.generateFrameNumbers('player-run', { frames:[0, 1, 2, 4, 5, 6, 7,8,9]}),
+			key: "player-run",
+			frames: this.anims.generateFrameNumbers("player-run", {
+				frames: [0, 1, 2, 4, 5, 6, 7, 8, 9],
+			}),
 			frameRate: 20,
 			repeat: -1,
-			duration:100,
+			duration: 100,
 		});
 	}
 
