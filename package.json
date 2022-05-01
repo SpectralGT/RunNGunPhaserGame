@@ -1,0 +1,20 @@
+{
+  "name": "RunNGunPhaserGame",
+  "version": "1.0.0",
+  "description": "This is a simple multiplayer game made using Phaser and Socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpectralGT/RunNGunPhaserGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpectralGT/RunNGunPhaserGame/issues"
+  },
+  "homepage": "https://github.com/SpectralGT/RunNGunPhaserGame#readme"
+}
