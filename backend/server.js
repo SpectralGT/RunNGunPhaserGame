@@ -7,12 +7,13 @@ var io = require("socket.io")(8080, {
 });
 
 io.on("connection", function (socket) {
-	console.log("Someone has connected");
+	console.log("new Player");
 
 	players[socket.id] = {
 		player_id: socket.id,
 		x: 0,
 		y: 0,
+		flipX: false
 	};
 
 	socket.emit("actualPlayers", players);
@@ -22,13 +23,8 @@ io.on("connection", function (socket) {
 	socket.on("player_moved", function (movement_data) {
 		players[socket.id].x = movement_data.x;
 		players[socket.id].y = movement_data.y;
-
+		players[socket.id].flipX = movement_data.flipX;
 		socket.broadcast.emit("enemy_moved", players[socket.id]);
-	});
-
-	socket.on("new_bullet", function (bullet_data) {
-		socket.emit("new_bullet", bullet_data);
-		socket.broadcast.emit("new_bullet", bullet_data);
 	});
 
 	socket.on("disconnect", function () {

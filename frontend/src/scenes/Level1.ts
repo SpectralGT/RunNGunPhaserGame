@@ -9,7 +9,7 @@ export default class Level1 extends Phaser.Scene {
 	private oldPlayerPosX: number = 0;
 	private oldPlayerPosY: number = 0;
 	private socket!: Socket;
-	private enemyGroup!: Phaser.GameObjects.Group;
+	private enemyGroup!: Phaser.Physics.Arcade.Group;
 
 	constructor() {
 		super("Level1");
@@ -17,7 +17,7 @@ export default class Level1 extends Phaser.Scene {
 
 	create(): void {
 		this.player = new Player(this, 50, 50);
-		this.enemyGroup = this.add.group();
+		this.enemyGroup = this.physics.add.group();
 		this.initCamera();
 		this.intiTileMap();
 		this.initCollision();
@@ -37,12 +37,13 @@ export default class Level1 extends Phaser.Scene {
 		this.socket.on("actualPlayers", function (players) {
 			Object.keys(players).forEach(function (id) {
 				if (players[id].player_id != self.socket.id) {
-					const enemy = new Enemy(
+					var enemy = new Enemy(
 						self,
 						players[id].x,
 						players[id].y,
 						players[id].player_id
 					);
+					enemy.flipX = players[id].flipX
 					self.enemyGroup.add(enemy);
 					self.physics.add.collider(enemy, self.player);
 				}
@@ -51,6 +52,7 @@ export default class Level1 extends Phaser.Scene {
 
 		this.socket.on("new_player", function (pInfo) {
 			const enemy = new Enemy(self, pInfo.x, pInfo.y, pInfo.player_id);
+			enemy.flipX = pInfo.flipX;
 			self.enemyGroup.add(enemy);
 			self.physics.add.collider(enemy, self.player);
 		});
@@ -59,6 +61,7 @@ export default class Level1 extends Phaser.Scene {
 			enemy_ref.getChildren().forEach((enemy) => {
 				if ((enemy as Enemy).id == playerData.player_id) {
 					(enemy as Enemy).setPosition(playerData.x, playerData.y);
+					(enemy as Enemy).flipX = playerData.flipX;
 				}
 			});
 		});
@@ -69,7 +72,7 @@ export default class Level1 extends Phaser.Scene {
 			this.oldPlayerPosX != this.player.x ||
 			this.oldPlayerPosY != this.player.y
 		) {
-			this.socket.emit("player_moved", { x: this.player.x, y: this.player.y });
+			this.socket.emit("player_moved", { x: this.player.x, y: this.player.y,flipX:this.player.flipX });
 		}
 	}
 
@@ -90,5 +93,6 @@ export default class Level1 extends Phaser.Scene {
 		this.physics.add.collider(this.player, this.groundLayer);
 		this.physics.add.collider(this.player, this.enemyGroup);
 		this.physics.add.collider(this.groundLayer, this.enemyGroup);
+		this.physics.add.collider(this.enemyGroup, this.enemyGroup);
 	}
 }
