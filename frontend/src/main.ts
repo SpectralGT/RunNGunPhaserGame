@@ -9,7 +9,6 @@ var config: Phaser.Types.Core.GameConfig = {
 		default: "arcade",
 		arcade: {
 			gravity: { y: 500},
-			debug: true,
 		},
 	},
 	pixelArt: true,
