@@ -9,6 +9,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.setPushable(false);
 		this.setImmovable(true);
 		this.setGravityY(0);
+		//creating enmey animation
 		this.anims.create({
 			key: "enemy-idle",
 			frames: this.anims.generateFrameNumbers("enemy-idle", {

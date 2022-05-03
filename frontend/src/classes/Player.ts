@@ -71,6 +71,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	jump(): void {
-		this.setVelocityY(-this.jumpforce);
+			this.setVelocityY(-this.jumpforce);
 	}
 }

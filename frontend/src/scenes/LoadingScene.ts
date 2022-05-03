@@ -4,23 +4,23 @@ export default class LoadingScene extends Phaser.Scene {
 	}
 
 	preload(): void {
-		this.load.image("terrain", "src/public/Terrain/Terrain(16x16).png");
+		this.load.image("terrain", "src/public/Terrain(16x16).png");
 		this.load.tilemapTiledJSON("map", "src/public/tilemap.json");
 
 		this.load.spritesheet(
 			"player-idle",
-			"src/public/Main Characters/Virtual Guy/Idle (32x32).png",
+			"src/public/Player-Idle (32x32).png",
 			{ frameWidth: 32, frameHeight: 32 }
 		);
 		this.load.spritesheet(
 			"enemy-idle",
-			"src/public/Main Characters/Mask Dude/Idle (32x32).png",
+			"src/public/Enemy-Idle (32x32).png",
 			{ frameWidth: 32, frameHeight: 32 }
 		);
 
 		this.load.spritesheet(
 			"player-run",
-			"src/public/Main Characters/Virtual Guy/Run (32x32).png",
+			"src/public/Player-Run (32x32).png",
 			{ frameWidth: 32, frameHeight: 32 }
 		);
 	}
