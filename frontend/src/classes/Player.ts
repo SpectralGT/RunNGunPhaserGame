@@ -71,6 +71,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	jump(): void {
+		if ((this.body as Phaser.Physics.Arcade.Body).onFloor()||
+			(this.body as Phaser.Physics.Arcade.Body).onWall()) {
 			this.setVelocityY(-this.jumpforce);
+		}
 	}
 }
